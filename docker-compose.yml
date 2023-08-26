@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./nginx/.
+    image: nginx
+    container_name: nginx
+    volumes:
+      - ./nginx/conf/nginx.conf:/etc/nginx/http.d
+      - ./nginx/conf/ssl:/etc/nginx/ssl
+    ports:
+      - "443:443"
+# volumes:
+#   wordpress:
+#     o:
+#     type: none
+#     device: /Users/iel-bakk/goinfre/wordpress
