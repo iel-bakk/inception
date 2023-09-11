@@ -8,6 +8,10 @@ RUN openssl req -x509 -days 365 -newkey rsa:2048 -nodes \
 
 
 COPY /conf/nginx.conf /etc/nginx/conf.d/default.conf
-COPY /conf/html/index.html /usr/share/nginx/html/index.html
+# COPY /conf/html/index.html /usr/share/nginx/html/index.html
 EXPOSE 443
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"] 
+
+
+
+# sed -i "s/bind-address ./bind-address = 0.0.0.0/" /etc/mysql/mariadb.conf.d/50-server.cnf
