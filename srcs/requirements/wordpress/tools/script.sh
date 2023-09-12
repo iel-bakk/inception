@@ -13,7 +13,7 @@ wp core download --path="/var/www/html"  --allow-root && chown -R www-data:www-d
 wp config create --dbname=$MYSQL_DATABASE \
     --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD \
     --dbhost=$MYSQL_HOST --path=/var/www/html --allow-root \
-    --skip-check --extra-php <<PHP
+    --skip-check --extra-php << PHP
  
 define('WP_REDIS_HOST', 'redis');
 
@@ -24,9 +24,9 @@ define('WP_REDIS_DISABLED', false);
 PHP
 
 # wordpress client is used to install wordpress with an admin user and password
-wp core install --url=$url --title=$title \
-    --admin_user=$admin_user --admin_password=$admin_password \
-    --admin_email=$admin_email --allow-root --path=/var/www/html
+wp core install --url=$URL --title=$TITLE \
+    --admin_user=$ADMIN_USER --admin_password=$ADMIN_PASSWORD \
+    --admin_email=$ADMIN_EMAIL --allow-root --path=/var/www/html
 # wordpress client is used to create a new user with the role of author
 wp user create iel-bakk iel-bakk@gmail.com --user_pass=$MYSQL_PASSWORD --role=author --allow-root --path=/var/www/html/
 # starts the php-fpm service 
