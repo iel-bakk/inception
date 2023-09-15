@@ -5,28 +5,54 @@ services:
     build: ./requirements/nginx/.
     container_name: nginx
     volumes:
-      - ./requirements/nginx/conf/nginx.conf:/etc/nginx/http.d
-      - ./requirements/nginx/conf/ssl:/etc/nginx/ssl
+      - wordpress:/var/www/html
     ports:
       - "443:443"
-    restart: always
+    networks:
+      - inception
+    depends_on:
+      - wordpress
+    restart: on-failure
 
   mariadb:
     build: ./requirements/mariadb/.
     container_name: mariadb
     ports:
       - "3306:3306"
-    env_file:
-      - .env
-    restart: always
+    networks:
+      - inception
+    restart: on-failure
+    volumes:
+      - db_data:/var/lib/mysql
 
   wordpress:
     build: ./requirements/wordpress/.
+    image: wordpress
     container_name: wordpress
     ports:
       - "9000:9000"
+    networks:
+      - inception
     volumes:
-      - ./requirements/wp:/var/www/html
+      - wordpress:/var/www/html
     env_file:
       - .env
+    depends_on:
+      - mariadb
     restart: on-failure
+
+networks:
+    inception:
+        driver: bridge
+
+volumes:
+  db_data:
+      driver_opts:
+        type: 'none'
+        device: /Users/iel-bakk/Desktop/iel-bakk/MDB
+        o: bind
+  wordpress:
+      driver_opts:
+        type: 'none'
+        device: /Users/iel-bakk/Desktop/iel-bakk/wordpress
+        o: bind

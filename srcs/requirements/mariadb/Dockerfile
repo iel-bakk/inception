@@ -1,19 +1,3 @@
-# FROM debian:bullseye
-
-# RUN apt-get update -y && apt-get upgrade -y 
-
-# RUN apt-get install mariadb-server -y
-
-# RUN service mysql start && chown -R mysql:mysql /var/lib/mysql
-
-# RUN sed -i "s/#port/port/" /etc/mysql/mariadb.conf.d/50-server.cnf
-
-# RUN chmod 777 /var/run/mysqld
-
-# RUN sed -i "s/bind-address ./bind-address = 0.0.0.0/" /etc/mysql/mariadb.conf.d/50-server.cnf
-
-# ENTRYPOINT ["mariadb"]
-
 # Use the official Debian Bullseye image as the base image
 FROM debian:bullseye
 
