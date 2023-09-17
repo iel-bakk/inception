@@ -17,7 +17,7 @@ chown -R www-data:www-data /var/www/html
 wp config set DB_NAME $Wordpress_database --path=/var/www/html --allow-root
 wp config set DB_USER $Wordpress_database_user --path=/var/www/html --allow-root
 wp config set DB_PASSWORD $Wordpress_database_password --path=/var/www/html --allow-root
-wp config set DB_HOST 'mariadb' --path=/var/www/html --allow-root
+wp config set DB_HOST $Wordpress_database --path=/var/www/html --allow-root
 
 wp core install --url=$Wordpress_database_host --path=/var/www/html --title='inception' --admin_user=$Wordpress_database_user --admin_password=$Wordpress_database_password --admin_email=$Wordpress_db_email --allow-root
 wp user create --allow-root  --path=/var/www/html  $Wordpress_admin_User $Wordpress_admin_email --role='author' --user_pass=$Wordpress_admin_password

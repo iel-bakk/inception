@@ -1,3 +1,0 @@
-Use Docker volumes if you need multiple containers to have shared access to the exact same data. Refer to the volumes section to learn about volumes.
-
-https://docs.docker.com/storage/volumes/
