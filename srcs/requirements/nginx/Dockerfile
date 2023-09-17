@@ -7,9 +7,10 @@ RUN openssl req -x509 -days 365 -newkey rsa:2048 -nodes \
     -out /etc/nginx/nginx-selfsigned.crt
 
 
-COPY /conf/nginx.conf /etc/nginx/conf.d/default
+COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
 # COPY /conf/html/index.html /usr/share/nginx/html/index.html
 EXPOSE 443
+# ENTRYPOINT [ "sleep", "infinity" ]
 CMD ["nginx", "-g", "daemon off;"] 
 
 

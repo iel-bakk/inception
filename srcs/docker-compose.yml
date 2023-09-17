@@ -16,7 +16,8 @@ services:
     restart: on-failure
 
   mariadb:
-    build: ./requirements/mariadb/.
+    build: 
+      context: ./requirements/mariadb/.
     image: mariadb
     container_name: mariadb
     ports:
@@ -24,11 +25,13 @@ services:
     networks:
       - inception
     restart: on-failure
+    env_file: .env
     volumes:
       - db_data:/var/lib/mysql
 
   wordpress:
-    build: ./requirements/wordpress/.
+    build:
+      context: ./requirements/wordpress/.
     image: wordpress
     container_name: wordpress
     ports:
